@@ -2,12 +2,12 @@ const express = require('express');
 const app = express();
 
 // This is your home, nothing wrong here, be safe
-app.get('/', (req, res) => res.send('Hello, NodeConf Colombia!'));
+app.get('/', (req, res) => res.send('Hello, Crop Risk'));
 
 // Endpoint to block your application event loop, nice!
 app.get('/block', (req, res) => {
   // This is 5 seconds, you can make longer :)
-  const end = Date.now() + 5000;
+  const end = Date.now() + 10000;
   while (Date.now() < end) {
     const soMuchMathWOW = 1 + 2 + 3;
   }
@@ -16,7 +16,7 @@ app.get('/block', (req, res) => {
 
 // Put here a non blocking JS operation
 app.get('/noblock', (req, res) => {
-
+  setTimeout(() => res.send('I am done nonblock'), 5000)
 });
 
 app.listen(3000, () => console.log('Super duper app listening on port 3000'));
